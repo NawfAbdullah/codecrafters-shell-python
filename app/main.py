@@ -30,7 +30,7 @@ def main():
 
     def change_dir(cmd):
         try:
-            os.chdir(' '.join(cmd.split(' ')[1:]))
+            os.chdir(os.path.expanduser(' '.join(cmd.split(' ')[1:])))
         except FileNotFoundError:
             sys.stdout.write(' '.join(cmd.split(' ')[1:]) +": No such file or directory\n")
 
