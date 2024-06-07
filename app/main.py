@@ -26,7 +26,6 @@ def main():
         elif command.split(' ')[0]=='type':
 
             cmd = command.split(" ")[1]
-            print(cmd)
             cmd_path = None
             paths = PATH.split(":")
             for path in paths:
