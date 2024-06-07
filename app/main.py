@@ -7,7 +7,7 @@ def main():
     # print("Logs from your program will appear here!")
 
     # Uncomment this block to pass the first stage
-
+    
     def echo(_):
         sys.stdout.write(' '.join(command.split(' ')[1:])+'\n')
 
@@ -32,7 +32,8 @@ def main():
     commands = {
         'echo':echo,
         'exit':lambda  _:sys.exit(0) ,
-        'type':handle_type
+        'type':handle_type,
+        'pwd':lambda _:sys.stdout.write(os.getcwd()+"\n")
     }
 
 
