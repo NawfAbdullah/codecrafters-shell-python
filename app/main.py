@@ -57,7 +57,6 @@ def main():
             main_cmd,*args = command.split(' ')
             executable = locate_executable(main_cmd)
             if executable:
-                print("execiting")
                 subprocess.run([executable, *args])
             else:
                 print(f"{command}: command not found")
