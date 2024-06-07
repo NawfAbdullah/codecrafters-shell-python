@@ -1,4 +1,5 @@
 import sys
+import os
 
 
 def main():
@@ -15,16 +16,30 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()   
         command = input()
+
+        PATH = os.environ.get("PATH")
         
         if command.split(' ')[0]=='exit':
             sys. exit(0) 
         elif command.split(' ')[0]=='echo':
             sys.stdout.write(' '.join(command.split(' ')[1:])+'\n')
         elif command.split(' ')[0]=='type':
-            if(command.split(' ')[1] in commands.keys()):
-                print(command.split(' ')[1]+' is a shell builtin')
+
+            cmd = command.split(" ")[1]
+            print(cmd)
+            cmd_path = None
+            paths = PATH.split(":")
+            for path in paths:
+                if os.path.isfile(f"{path}/{cmd}"):
+                    cmd_path = f"{path}/{cmd}"
+            
+            if cmd in commands.keys():
+                sys.stdout.write(f"{cmd} is a shell builtin\n")
+            elif cmd_path:
+                sys.stdout.write(f"{cmd} is {cmd_path}\n")
             else:
-                print(command.split(' ')[1]+' not found')
+                sys.stdout.write(f"{cmd} not found\n")
+
         else:
             print(f"{command}: command not found")
 
