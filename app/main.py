@@ -28,12 +28,18 @@ def main():
         else:
             sys.stdout.write(f"{cmd} not found\n")
 
+    def change_dir(cmd):
+        try:
+            os.chdir(' '.join(cmd.split(' ')[1:]))
+        except FileNotFoundError:
+            print(f"{cmd.split(' ')[0]}: {' '.join(cmd.split(' ')[1:])} no such file or directory exists")
 
     commands = {
         'echo':echo,
         'exit':lambda  _:sys.exit(0) ,
         'type':handle_type,
-        'pwd':lambda _:sys.stdout.write(os.getcwd()+"\n")
+        'pwd':lambda _:sys.stdout.write(os.getcwd()+"\n"),
+        'cd':change_dir
     }
 
 
