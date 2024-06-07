@@ -32,7 +32,7 @@ def main():
         try:
             os.chdir(' '.join(cmd.split(' ')[1:]))
         except FileNotFoundError:
-            print(f"{cmd.split(' ')[0]}: {' '.join(cmd.split(' ')[1:])} no such file or directory exists")
+            print(f"{' '.join(cmd.split(' ')[1:])} no such file or directory exists")
 
     commands = {
         'echo':echo,
